@@ -19,7 +19,7 @@ Using Docker will make your life easier because: 😊
 Docker is awesome and you should try it! 🚀
 
 
-## 🐳 **Then what is Docker?** 🐳
+## **Then what is Docker?** 🐳
 Docker is a software platform that lets you run applications inside containers. Think of containers like virtual machines, but lighter and more efficient! 🚀
 
 ### So we use docker for : 
@@ -56,5 +56,26 @@ By using Docker, you can simplify the deployment of your web application, make i
 ## **Containers , Images and Volumes** 📦
 
 - **Containers** are like boxes that you can put things in. Each box has its own things that are separate from the other boxes. You can open and close a box without affecting the other boxes or the room. Containers are like boxes that have their own files, programs, and settings that are separate from the other containers or the computer. You can create and delete containers without affecting the other containers or the computer. Containers are fast and easy to use because they use the same system as the computer and do not need to start a whole new system like virtual machines do.
-- **Images** are like instructions for making containers. They tell you what to put in a container, such as what files, programs, and settings. You can use an existing instruction from a public place like Docker Hub, or you can make your own instruction using a Dockerfile. Images do not change once they are made. You can use the same image to make many containers with the same things.
+- **Images** are like recipes for making containers. They tell you what ingredients and steps you need to make a container. You can use an existing recipe from a public place like Docker Hub, or you can write your own recipe using a Dockerfile. Recipes do not change once they are written. You can use the same recipe to make many containers with the same ingredients and steps.
+> let's say you have a project that consists of a web application written in Node.js, a backend server written in Java, and a machine learning component written in Python. You can create three separate Docker images for each of these components, each with its own dependencies and configurations, and then use them to create containers that can run the entire project.
+
+For instance, you can create a Docker image for the Node.js application by specifying the base image as node and then copying the application code into the container. You can then build and tag the image with a specific name, like my-node-app.
 - **Volumes** are like external drives that you can connect to your containers. They let you save data that your containers make or use, such as databases, logs, or configuration files. Volumes do not get deleted when you delete a container. You can also share volumes among many containers or access them from the computer. Volumes are the best way to save data with Docker because they are easier to back up, move, and manage than other ways of saving data.
+
+
+## **Let's start with Docker** 🔥
+
+- First open this website for postgresql: https://hub.docker.com/_/postgres
+you will see this right side of the page:
+```bash
+docker pull postgres
+```
+- Open your terminal and type this command:
+```bash
+docker pull postgres
+```
+> - You can check docker is installed or not by typing this command: `docker --version`
+> - You can visit the docker documentation for pull command: https://docs.docker.com/engine/reference/commandline/pull/
+> - Pulling an image doesn't mean installing it. It just means that you are downloading the image from the Docker Hub to your computer. 
+> - It will download the latest version of the image. If you want to download a specific version, you can add the version number after the image name. For example, `docker pull postgres:9.6.2` will download the 9.6.2 version of the image.
+
