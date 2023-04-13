@@ -79,3 +79,20 @@ docker pull postgres
 > - Pulling an image doesn't mean installing it. It just means that you are downloading the image from the Docker Hub to your computer. 
 > - It will download the latest version of the image. If you want to download a specific version, you can add the version number after the image name. For example, `docker pull postgres:9.6.2` will download the 9.6.2 version of the image.
 
+- Now may be you want to check your images, so type this command:
+```bash
+docker image ls
+```
+> - You can visit the docker documentation for image command:https://docs.docker.com/engine/reference/commandline/image/
+
+You can see the output like this:
+```bash
+REPOSITORY   TAG       IMAGE ID       CREATED        SIZE
+postgres     latest    ceccf204404e   30 hours ago   379MB
+```
+> Even you can open the docker desktop and check the images there ,and you will see the same output.
+> - You can visit for ps command: https://docs.docker.com/engine/reference/commandline/ps/
+
+
+- Now if you want to run this command, you can type this command:
+```
