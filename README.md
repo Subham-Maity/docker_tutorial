@@ -293,3 +293,34 @@ docker run --name my-mongo-one -d mongo
 docker container ls
 ```
 ![image](https://user-images.githubusercontent.com/97989643/232030798-295453ae-b063-47cc-8f76-15a079209067.png)
+
+#### ⚡ Port Mapping
+11. One version of the mongo is running now I want to run another version of the mongo so I will map the port number.
+```bash
+docker run --name my-mongo-one -p 4000:27017 -d mongo
+```
+then
+
+```bash
+docker run --name my-mongo-two -p 4001:27017 -d mongo
+```
+![image](https://user-images.githubusercontent.com/97989643/232038856-61110a10-ed36-4294-8f07-bdba91029de9.png)
+
+#### ⚡ Docker Logs
+
+12. Now if you want to see the logs of the container you can type this command:
+
+> Logs is basically to see what is happening inside the container and all the details of the container.
+
+```bash
+docker logs my-mongo-one
+```
+- You can id instead of the name.
+
+#### ⚡ Delete the container
+
+13. Let's delete the container
+```bash
+docker container rm my-mongo-one
+```
+
