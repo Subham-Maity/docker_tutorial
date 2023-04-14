@@ -64,7 +64,7 @@ By using Docker, you can simplify the deployment of your web application, make i
 
 
 ## **Let's start with Docker** 🔥
-
+If you want to learn the actual thing, you should work on real-world problems that challenge you and make you think. As you try to fix the issues and errors that arise, you will learn more concepts and skills along the way. That’s why I’ll focus on showing you how to work on a real-world application with docker, and how to troubleshoot any problems that may occur. You will also learn how to read documentation, understand complexity, and solve any problem that comes your way. Let’s dive right in!
 ### **Pulling an image and run and stop a container** 🐳
 
 1. First open this website for postgresql: https://hub.docker.com/_/postgres
@@ -190,3 +190,24 @@ Status: Downloaded newer image for postgres:13.8
 
 ![image](https://user-images.githubusercontent.com/97989643/231970823-caca3e0c-df6c-41dc-8470-07491322ff91.png)
 
+4. Now you might notice the port number is not showing in the docker desktop so you can check the port number by typing this command:
+```bash
+docker port postgres-lates
+```
+or,
+```bash
+docker ps
+```
+![image](https://user-images.githubusercontent.com/97989643/231972961-1370a49a-fda0-47fa-9354-64cc7ad4b9c6.png)
+
+> Here you will notice the port number same for both the containers like 5432/tcp this means the port number is 5432. Port number is where the postgres is running if the same port number is running in your local machine then you can’t run the postgres in your local machine.
+> - For that you should learn about docker container you can check my blog on docker container [here](https://docs.docker.com/engine/reference/commandline/container/)
+5. Here I want to learn about docker container stop so you can check this docker container stop [here](https://docs.docker.com/engine/reference/commandline/container_stop/)
+So I will stop the container by typing this command:
+```bash
+docker container stop postgres-lates
+```
+> - you can also give the container id instead of the name.
+> - no if you hit the command `docker container ls` you will see the container is stopped.
+> - you can also use docker `container ls -a` to see all the containers.
+    ![image](https://user-images.githubusercontent.com/97989643/231978583-54f7b958-77ed-41a6-84ad-424ccc83ca7d.png)
