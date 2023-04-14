@@ -65,9 +65,8 @@ By using Docker, you can simplify the deployment of your web application, make i
 
 ## **Let's start with Docker** 🔥
 
-Sure, I can help you with that. Here is the rewritten text with bullet points changed to numbers:
+### **Pulling an image and run and stop a container** 🐳
 
-```
 1. First open this website for postgresql: https://hub.docker.com/_/postgres
 you will see this right side of the page:
 ```bash
@@ -141,4 +140,53 @@ CONTAINER ID   IMAGE      COMMAND                  CREATED         STATUS       
 docker stop my_container
 ```
 > - in my case, my_container is beautiful_curie
+> - you can also mention your container id instead of the name.
 > - or you can go to the docker desktop and click on the stop button.
+10. Now again if you want to run the container, you can type this command:
+```bash
+docker start my_container
+```
+> - in my case, my_container is beautiful_curie
+> - you can do the same thing with the docker desktop.
+
+###  **Dockerfile** 📄
+
+I want to spin up two machines one with postgres latest one with postgres 13.8 rest of the stuff will be same
+
+1. First hit this command:
+```bash
+docker run --name postgres-lates -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+```
+> Here postgres-lates is the name of the container
+
+2. Now hit this command:
+```bash
+docker run --name postgres-old -e POSTGRES_PASSWORD=mysecretpassword -d postgres:13.8
+```
+you will see the output like this:
+```bash
+Unable to find image 'postgres:13.8' locally
+13.8: Pulling from library/postgres
+e9995326b091: Pull complete
+a0cb03f17886: Pull complete
+bb26f7e78134: Pull complete
+c8e073b7ae91: Pull complete
+99b5b1679915: Pull complete
+55c520fc03c5: Pull complete
+d0ac84d6672c: Pull complete
+4effb95d5849: Pull complete
+97fd2548fc1e: Pull complete
+43e7f13e3769: Pull complete
+2898936d5b2e: Pull complete
+b4b731b0864d: Pull complete
+fbd79522dd4c: Pull complete
+Digest: sha256:2b31dc28ab2a687bb191e66e69c2534c9c74107ddb3192ff22a04de386425905
+Status: Downloaded newer image for postgres:13.8
+309ecc4e9fd6173f9c6173a2b3a07f8cb656e1cefed0b2b92418bbcc10df7379
+```
+> First it will check whether the image is present in your local machine or not, if not it will download the image from the docker hub.
+
+3. Now if you check in your docker desktop, you will see two containers are running.
+
+![image](https://user-images.githubusercontent.com/97989643/231970823-caca3e0c-df6c-41dc-8470-07491322ff91.png)
+
