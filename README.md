@@ -40,6 +40,33 @@ Let's say you have a web application that uses Node.js and MongoDB. Normally, yo
 To do this, you would create two Docker images: one for the Node.js application and one for the MongoDB database. Then you would use the docker run command to start both containers, making sure to link them together so that the Node.js container can communicate with the MongoDB container.
 
 By using Docker, you can simplify the deployment of your web application, make it more portable, and improve its scalability.
+### What is difference between Docker and Virtual Machine(VM)? 🤔
+#### ❗ What is VM?
+
+VM stands for virtual machine. A virtual machine is also like a mini-computer that runs on your main computer. But unlike a container, a virtual machine has its own operating system. This means that it can run any kind of application, regardless of the operating system of your main computer.
+
+The advantage of using virtual machines is that they are very secure and isolated. They don't share anything with your main computer or with other virtual machines. If something goes wrong with one virtual machine, it won't affect the others. You can also run different operating systems on different virtual machines.
+
+#### ❗ What is Docker?
+
+Docker is a tool that lets you create and run containers. Containers are like virtual machines, but they don't have their own operating system. They only have the files, programs, and settings that they need to run their application. This makes them very efficient and fast.
+
+Docker doesn't have kernel-level virtualization like virtual machines do. Instead, it uses a container engine to create containers. This makes Docker much lighter and faster than virtual machines.
+
+#### ❗ How do they differ?
+
+The main difference between docker and vm is how they use the resources of your main computer. Docker containers share the same operating system as your main computer. They only use the software that they need to run their application. This makes them very efficient and fast.
+
+Virtual machines don't share anything with your main computer. They have their own operating system and hardware resources. This makes them more independent and secure, but also more heavy and slow.
+
+Here is a table that summarizes some of the key differences between docker and vm:
+
+| Topic | Docker | VM |
+| --- | --- | --- |
+| Operating system | Shared | Separate |
+| Performance | Fast | Slow |
+| Portability | Easy | Hard |
+| Security | Low | High |
 
 ### How to install Docker 🐳
 
