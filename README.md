@@ -323,4 +323,70 @@ docker logs my-mongo-one
 ```bash
 docker container rm my-mongo-one
 ```
+### ✅ **Let's Connect the mongo express with the mongo** ??
+
+> Our idea is to create a container of the mongo and another container of the mongo express now we will connect the mongo express with the mongo container because mongo express depends on the mongo container.
+> - You can assume this Idea for any kind of project.
+> - Also in this case you have to give a same network name to both the containers.
+
+1. First open the documentation of mongo [here](https://hub.docker.com/_/mongo) and mongo express [here](https://hub.docker.com/_/mongo-express) and check the environment variables and ports and also check docker's documentation on [network](https://docs.docker.com/network/)
+
+#### ⚡ Syntax Understanding
+
+1. If you want to create mongo with network port environment variables you can type this command:
+```bash
+docker run -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=password --name mongodb --net mongo-network -d mongo
+```
+- `docker` means you are using docker.
+- `run` means you are running the container.
+- `-p` means you are mapping the port number in this case you are mapping the port number 27017 to 27017.
+- `-e` means you are giving the environment variables if you open mongo documentation you will see the environment variables.
+- `--name` means you are giving the name to the container.
+- `--net` means you are giving the network name to the container in this case you are giving the network name `mongo-network`.
+- `-d` means you are running the container in the background d means detached.
+- `mongo` means you are pulling the mongo image from the docker hub.
+#### ⚡ Better Syntax
+But you can write this even better way:
+
+```bash
+docker run -d \
+-p 27017:27017 \
+-e MONGO_INITDB_ROOT_USERNAME=admin \
+-e MONGO_INITDB_ROOT_PASSWORD=password \
+--name mongodb \
+--net mongo-network \
+mongo
+
+```
+> if you see any network not found error you can create the network by typing this command:```docker network create mongo-network```
+
+#### ⚡ Lost network finding
+2. Assume you have created the network and you have created the container but you have lost the network name so you can find the network name by typing this command:
+
+```bash
+docker network ls
+```
+![image](https://user-images.githubusercontent.com/97989643/232096253-34039dbe-39c6-4ed4-89f2-40546808b6c4.png)
+
+3. Now we are going to create the mongo express container:
+
+```bash 
+docker run -d \
+-p 8081:8081 \
+-e ME_CONFIG_MONGODB_ADMINUSERNAME=admin \
+-e ME_CONFIG_MONGODB_ADMINPASSWORD=password \
+-e ME_CONFIG_MONGODB_SERVER=mongodb \
+--name mongo-express \
+--net mongo-network \
+mongo-express
+```
+4. Now check the container
+```bash
+docker container ls
+```
+5. Now you can run mongo express on the browser by typing this url:
+```bash
+http://localhost:8081
+```
+![image](https://user-images.githubusercontent.com/97989643/232122188-1ad225d8-7c06-4ffb-b2a2-be308c36c5ed.png)
 
