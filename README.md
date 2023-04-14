@@ -92,13 +92,14 @@ Here is a table that summarizes some of the key differences between docker and v
 
 ## **Let's start with Docker** 🔥
 If you want to learn the actual thing, you should work on real-world problems that challenge you and make you think. As you try to fix the issues and errors that arise, you will learn more concepts and skills along the way. That’s why I’ll focus on showing you how to work on a real-world application with docker, and how to troubleshoot any problems that may occur. You will also learn how to read documentation, understand complexity, and solve any problem that comes your way. Let’s dive right in!
-### **Pulling an image and run and stop a container** 🐳
-
+### ✅ **Pulling an image and run and stop a container** 🐳
+#### ⚡  Pulling an image
 1. First open this website for postgresql: https://hub.docker.com/_/postgres
 you will see this right side of the page:
 ```bash
 docker pull postgres
 ```
+
 2. Open your terminal and type this command:
 ```bash
 docker pull postgres
@@ -107,7 +108,7 @@ docker pull postgres
 > - You can visit the docker documentation for pull command: https://docs.docker.com/engine/reference/commandline/pull/
 > - Pulling an image doesn't mean installing it. It just means that you are downloading the image from the Docker Hub to your computer.
 > - It will download the latest version of the image. If you want to download a specific version, you can add the version number after the image name. For example, `docker pull postgres:9.6.2` will download the 9.6.2 version of the image.
-
+#### ⚡ Check the images
 3. Now may be you want to check your images, so type this command:
 ```bash
 docker image ls
@@ -122,6 +123,7 @@ postgres     latest    ceccf204404e   30 hours ago   379MB
 > Even you can open the docker desktop and check the images there ,and you will see the same output.
 > - You can visit for ps command: https://docs.docker.com/engine/reference/commandline/ps/
 
+#### ⚡ Run a container
 
 4. Now if you want to run postgresql, first you should visit postgresql documentation: https://hub.docker.com/_/postgres check for `How to use this image`
 - You will see this:
@@ -153,6 +155,9 @@ PostgreSQL init process complete; ready for start up.
 6. Now hit `docker run -e POSTGRES_PASSWORD=mysecretpassword -d postgres`
 > One Id will be generated
 7. Now if you want to check your containers on the software, you can see `the another container` is running with another name.
+
+#### ⚡ check the containers
+
 8. Now if you want to check your containers on the terminal, you can type this command:
 ```bash
 docker ps
@@ -162,6 +167,8 @@ docker ps
 CONTAINER ID   IMAGE      COMMAND                  CREATED         STATUS         PORTS      NAMES
 8fee7f681552   postgres   "docker-entrypoint.s…"   2 minutes ago   Up 2 minutes   5432/tcp   beautiful_curie
 ```
+#### ⚡ Stop and start a container
+
 9. Now if you want to stop the container, you can type this command:
 ```bash
 docker stop my_container
@@ -176,10 +183,10 @@ docker start my_container
 > - in my case, my_container is beautiful_curie
 > - you can do the same thing with the docker desktop.
 
-###  **Dockerfile** 📄
+### ✅ **Old and new version of postgresql** 🐳
 
 I want to spin up two machines one with postgres latest one with postgres 13.8 rest of the stuff will be same
-
+#### ⚡ Pull according to the version
 1. First hit this command:
 ```bash
 docker run --name postgres-lates -e POSTGRES_PASSWORD=mysecretpassword -d postgres
@@ -229,6 +236,9 @@ docker ps
 
 > Here you will notice the port number same for both the containers like 5432/tcp this means the port number is 5432. Port number is where the postgres is running if the same port number is running in your local machine then you can’t run the postgres in your local machine.
 > - For that you should learn about docker container you can check my blog on docker container [here](https://docs.docker.com/engine/reference/commandline/container/)
+
+#### ⚡ Stop the container
+
 5. Here I want to learn about docker container stop so you can check this docker container stop [here](https://docs.docker.com/engine/reference/commandline/container_stop/)
 So I will stop the container by typing this command:
 ```bash
@@ -238,3 +248,48 @@ docker container stop postgres-lates
 > - no if you hit the command `docker container ls` you will see the container is stopped.
 > - you can also use docker `container ls -a` to see all the containers.
     ![image](https://user-images.githubusercontent.com/97989643/231978583-54f7b958-77ed-41a6-84ad-424ccc83ca7d.png)
+
+
+#### ⚡ Removing all containers
+
+6. Now if you want to remove all containers you can type this command:
+- Before removing the container you should check how I find this on internet or stackoverflow check this [here](https://stackoverflow.com/questions/17236796/how-to-remove-old-docker-containers)
+```bash
+docker container prune
+```
+you will see the output like this:
+```bash
+WARNING! This will remove all stopped containers.
+Are you sure you want to continue? [y/N] y
+Deleted Containers:
+309ecc4e9fd6173f9c6173a2b3a07f8cb656e1cefed0b2b92418bbcc10df7379
+e5dbcda75300b6cebb4c40aad10cfdb4245ce5ac526efef42b02da7e78ea6ed9
+8fee7f68155231c08da8a1441be7c196c8fae68f4cb72fb8d35e53669683d44c
+04d5b89229259396524f85a0fb222c2f24bc9207e4912240277667fac4a067c6
+
+Total reclaimed space: 63B
+```
+> This is dangerous command so be careful while using this command.
+
+#### ⚡ Check volumes
+
+7. Now if you want to check the volumes you can type this command:
+```bash
+docker volume ls
+```
+![image](https://user-images.githubusercontent.com/97989643/232023685-45f4a982-3a99-49d9-be00-71703938b8aa.png)
+
+8. Let's try some another database like mongoDB
+
+```bash
+docker pull mongo
+```
+9. Now create a container
+```bash
+docker run --name my-mongo-one -d mongo
+```
+10. Now check the container
+```bash
+docker container ls
+```
+![image](https://user-images.githubusercontent.com/97989643/232030798-295453ae-b063-47cc-8f76-15a079209067.png)
