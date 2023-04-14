@@ -92,7 +92,7 @@ Here is a table that summarizes some of the key differences between docker and v
 
 ## **Let's start with Docker** 🔥
 If you want to learn the actual thing, you should work on real-world problems that challenge you and make you think. As you try to fix the issues and errors that arise, you will learn more concepts and skills along the way. That’s why I’ll focus on showing you how to work on a real-world application with docker, and how to troubleshoot any problems that may occur. You will also learn how to read documentation, understand complexity, and solve any problem that comes your way. Let’s dive right in!
-### ✅ **Pulling an image and run and stop a container** 🐳
+### ✅ **Let's play with Postgresql** 🐘
 #### ⚡  Pulling an image
 1. First open this website for postgresql: https://hub.docker.com/_/postgres
 you will see this right side of the page:
@@ -183,17 +183,17 @@ docker start my_container
 > - in my case, my_container is beautiful_curie
 > - you can do the same thing with the docker desktop.
 
-### ✅ **Old and new version of postgresql** 🐳
 
-I want to spin up two machines one with postgres latest one with postgres 13.8 rest of the stuff will be same
 #### ⚡ Pull according to the version
-1. First hit this command:
+I want to spin up two machines one with postgres latest one with postgres 13.8 rest of the stuff will be same
+
+11. First hit this command:
 ```bash
 docker run --name postgres-lates -e POSTGRES_PASSWORD=mysecretpassword -d postgres
 ```
 > Here postgres-lates is the name of the container
 
-2. Now hit this command:
+12. Now hit this command:
 ```bash
 docker run --name postgres-old -e POSTGRES_PASSWORD=mysecretpassword -d postgres:13.8
 ```
@@ -220,11 +220,11 @@ Status: Downloaded newer image for postgres:13.8
 ```
 > First it will check whether the image is present in your local machine or not, if not it will download the image from the docker hub.
 
-3. Now if you check in your docker desktop, you will see two containers are running.
+13. Now if you check in your docker desktop, you will see two containers are running.
 
 ![image](https://user-images.githubusercontent.com/97989643/231970823-caca3e0c-df6c-41dc-8470-07491322ff91.png)
 
-4. Now you might notice the port number is not showing in the docker desktop so you can check the port number by typing this command:
+14. Now you might notice the port number is not showing in the docker desktop so you can check the port number by typing this command:
 ```bash
 docker port postgres-lates
 ```
@@ -239,7 +239,7 @@ docker ps
 
 #### ⚡ Stop the container
 
-5. Here I want to learn about docker container stop so you can check this docker container stop [here](https://docs.docker.com/engine/reference/commandline/container_stop/)
+15. Here I want to learn about docker container stop so you can check this docker container stop [here](https://docs.docker.com/engine/reference/commandline/container_stop/)
 So I will stop the container by typing this command:
 ```bash
 docker container stop postgres-lates
@@ -252,7 +252,7 @@ docker container stop postgres-lates
 
 #### ⚡ Removing all containers
 
-6. Now if you want to remove all containers you can type this command:
+16. Now if you want to remove all containers you can type this command:
 - Before removing the container you should check how I find this on internet or stackoverflow check this [here](https://stackoverflow.com/questions/17236796/how-to-remove-old-docker-containers)
 ```bash
 docker container prune
@@ -273,29 +273,29 @@ Total reclaimed space: 63B
 
 #### ⚡ Check volumes
 
-7. Now if you want to check the volumes you can type this command:
+17. Now if you want to check the volumes you can type this command:
 ```bash
 docker volume ls
 ```
 ![image](https://user-images.githubusercontent.com/97989643/232023685-45f4a982-3a99-49d9-be00-71703938b8aa.png)
 
-8. Let's try some another database like mongoDB
-
+### ✅ **Let's play with the mongo** 🐲
+1. First pull the mongo image from the docker hub
 ```bash
 docker pull mongo
 ```
-9. Now create a container
+2. Now create a container
 ```bash
 docker run --name my-mongo-one -d mongo
 ```
-10. Now check the container
+3. Now check the container
 ```bash
 docker container ls
 ```
 ![image](https://user-images.githubusercontent.com/97989643/232030798-295453ae-b063-47cc-8f76-15a079209067.png)
 
 #### ⚡ Port Mapping
-11. One version of the mongo is running now I want to run another version of the mongo so I will map the port number.
+4. One version of the mongo is running now I want to run another version of the mongo so I will map the port number.
 ```bash
 docker run --name my-mongo-one -p 4000:27017 -d mongo
 ```
@@ -308,7 +308,7 @@ docker run --name my-mongo-two -p 4001:27017 -d mongo
 
 #### ⚡ Docker Logs
 
-12. Now if you want to see the logs of the container you can type this command:
+5. Now if you want to see the logs of the container you can type this command:
 
 > Logs is basically to see what is happening inside the container and all the details of the container.
 
@@ -319,7 +319,7 @@ docker logs my-mongo-one
 
 #### ⚡ Delete the container
 
-13. Let's delete the container
+6. Let's delete the container
 ```bash
 docker container rm my-mongo-one
 ```
