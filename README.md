@@ -1,4 +1,3 @@
-
 # Why should I use Docker 🐳 ?
 
 Have you ever faced this problem? 😱
@@ -389,4 +388,56 @@ docker container ls
 http://localhost:8081
 ```
 ![image](https://user-images.githubusercontent.com/97989643/232122188-1ad225d8-7c06-4ffb-b2a2-be308c36c5ed.png)
+
+## **Let's Understand the Docker Compose** 🐳
+
+> Docker Compose is a tool that helps you manage multiple containers as a single application. You define your application’s services in a YAML file and then use a single command to start or stop all the services. This makes it easy to share and collaborate on projects with others
+
+1. Create a file named `docker-compose.yml` and install plugins `indent-rainbow` and `docker-compose` 
+2. Please use `tab` instead of `space` in this file because yml file is similar to python it strictly follows the indentation.
+3. Create two folder `Codes` and `DockerCompose`
+4. Inside the `DockerCompose` folder create a file named `docker-compose.yml`
+> - you can name the file anything but it is a good practice to name it `docker-compose.yml`
+> - You can use `indent-rainbow` plugin to make the indentation better.
+
+Inside the `docker-compose.yml` file type this code:
+### Step 1
+```yml
+version: '3'
+services:
+  mongodb:
+  mongo-express:
+```
+- Whatever you wrote on the terminal you have to write it here.
+
+### Step 2
+> Your compose file doesn't know which container to run first, so it could run `Express` first or it could run `mongodb` first. We also know that Express relies on `mongodb`, so it could run mongodb first or maybe it could run Express first. But we know that `Express` relies on `mongodb`, so the mongodb containers should be up and running first and then Express should come into the picture. Now there is an option where we can write this container first, then second Express, which is dependent on mongodb. Or we can keep this Express container up and say 'hey, you keep on restarting until you find a connection with mongodb.' The majority of the time people will be using something like 'depends on' for that. So for that, we have to write depends on then we have to write the name of the container, which is mongodb."
+
+```yml
+version: '3'
+services:
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    networks:
+      - mongo-network
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    container_name: mongo-express
+    ports:
+      - 8081:8081
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+    networks:
+      - mongo-network
+
 
