@@ -481,4 +481,137 @@ docker-compose -f docker-compose.yml up
 ```
 You might see `Subham` database again when you visit the localhost:8081.
 ![image](https://user-images.githubusercontent.com/97989643/233117646-eee65c16-1902-4228-8911-a0fa27aac277.png)
+### Step 3 (Data Persistence)
 > One of the biggest problems in the Docker world is that data doesn’t persist. This means that the container is a removable or detachable item and anything mentioned in the docker-compose file will be removed when you remove the container. This can actually be a good thing when you are making a sensitive application, especially something like a code engine. There is a chance that someone might throw up malicious code that could corrupt your entire system. But with a Docker container, you don’t have to worry too much because everything just goes away after that. However, in this case, we want to keep this data and understand what is keeping it. For this, we need to understand Docker volumes. Docker Desktop sometimes, in fact most of the time, creates automatic volumes for you, especially for databases. It assumes that you might want to keep this database there. This is where something interesting comes into the picture.
+
+Why do we need to know about data persistence?
+> - If you are using a database, you need to know how to persist the data meaning how to keep the data even after you remove the container or even after you restart the container.
+> - So here comes the concept of volumes.Volumes are one way to achieve data persistence in a containerized environment. They allow you to store data outside of the container’s file system so that it can be accessed even if the container is removed or restarted.
+
+#### ⚡ Creating a volume in docker-compose file
+
+```yml
+version: '3'
+services:
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - mongodb_data:/data/db
+  mongo-express:
+    image: mongo-express
+    restart: always
+    container_name: mongo-express
+    ports:
+      - 8081:8081
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+volumes:
+  mongodb_data:
+    driver: local
+```
+- Now again do the same thing as we did in the previous step.
+  - Stop the container from docker desktop.
+  - Run the container from the terminal.
+  - Visit the localhost:8081.
+  - Create a database.
+  - Stop the container from docker desktop.
+  - Run the container from the terminal.
+  - Visit the localhost:8081.
+  - Now you can see the database.
+    ![image](https://user-images.githubusercontent.com/97989643/233134779-06775b0e-b903-4f19-8f1c-2f7f587a9401.png)
+**I understand that it is a little bit confusing but don't worry I will explain it in detail.**
+
+_Let's do some fun stuff so that you can understand it better._
+- step 1: Stop the container by pressing `ctrl+c` in the terminal.
+- step 2: Now go to your `docker-compose.yml` file and rename the volume name from `mongodb_data` to `mongodb_data1` like this:
+```yml
+version: '3'
+services:
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - mongodb_data1:/data/db
+  mongo-express:
+    image: mongo-express
+    restart: always
+    container_name: mongo-express
+    ports:
+      - 8081:8081
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+volumes:
+    mongodb_data1:
+        driver: local
+```
+
+![image](https://user-images.githubusercontent.com/97989643/233131630-518325ca-b01e-43ae-9b6a-4c9685397dea.png)
+
+- step 4: Now create a database name `SubhamSecond` and create a collection name `SubhamSecondCollection` and add some data.
+Start the container again by running the container from the terminal.
+```bash
+docker-compose -f docker-compose.yml up
+```
+Now if you visit the localhost:8081 you will see the database.
+![image](https://user-images.githubusercontent.com/97989643/233133685-dccbc53e-049b-4b2d-a888-9ea42de38323.png)
+- step 5: Now stop the container from docker desktop or by pressing `ctrl+c` in the terminal.
+- step 6: Now again change the `docker-compose.yml` file like this and rename the volume name from `mongodb_data1` to `mongodb_data` means previous volume name.
+
+```yml
+version: '3'
+services:
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - mongodb_data:/data/db
+  mongo-express:
+    image: mongo-express
+    restart: always
+    container_name: mongo-express
+    ports:
+      - 8081:8081
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+volumes:
+    mongodb_data:
+        driver: local
+```
+Now again start the container from the terminal.
+```bash
+docker-compose -f docker-compose.yml up
+```
+Now if you visit the localhost:8081 you will see the database `CodeXam`
+![image](https://user-images.githubusercontent.com/97989643/233134930-13081cb3-51e7-44a3-bf55-6e705067d42d.png)
+
+
+So this is called data persistence. Now you can understand why we need to know about data persistence.
+You can create as many volumes as you want. If you want to know more about data persistence in docker then you can check out this [link](https://docs.docker.com/storage/volumes/).
+
+#### ⚡ Stop running all containers
+> `ctrl+c` doesn't actually stop the container. It just stops the container from running in the terminal. So if you want to stop the container from running then you can use the following command.
+```bash
+docker-compose -f docker-compose.yml down
+```
