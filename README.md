@@ -402,6 +402,7 @@ http://localhost:8081
 
 Inside the `docker-compose.yml` file type this code:
 ### Step 1
+#### ⚡ Writing on YML file
 ```yml
 version: '3'
 services:
@@ -424,9 +425,6 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=password
-    networks:
-      - mongo-network
-
   mongo-express:
     image: mongo-express
     restart: always
@@ -437,7 +435,50 @@ services:
       - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
       - ME_CONFIG_MONGODB_ADMINPASSWORD=password
       - ME_CONFIG_MONGODB_SERVER=mongodb
-    networks:
-      - mongo-network
+```
+> - `version` means you are using docker-compose version 3.
+> - `services` means you are creating the services.
+> - `mongodb` means you are creating the mongodb service.
+> - `image` means you are pulling the image from the docker hub.
+> - `container_name` means you are giving the name to the container.
+> - `ports` means you are mapping the port number in this case you are mapping the port number 27017 to 27017.
+> - `environment` means you are giving the environment variables if you open mongo documentation you will see the environment variables.
+> - `restart` means you are saying that if the container is stopped then restart it.
+> - `depends_on` means you are saying that this container depends on the mongodb container.
+>   - `ME_CONFIG_MONGODB_SERVER` means you are giving the name of the mongodb container.
+>   - `ME_CONFIG_MONGODB_ADMINUSERNAME` means you are giving the username of the mongodb container.
+>   - `ME_CONFIG_MONGODB_ADMINPASSWORD` means you are giving the password of the mongodb container.
+>   - `ME_CONFIG_MONGODB_SERVER` means you are giving the name of the mongodb container.
+
+#### ⚡ Running the docker-compose file
+- Now in the terminal type this command:
+```bash
+docker-compose -f docker-compose.yml up
+```
+> This will create the container and run the container. But make sure you are in the same directory where the `docker-compose.yml` file is located.
+> - `docker-compose` means you are using docker-compose.
+> - `-f` means you are giving the file name.
+> - `docker-compose.yml` means you are giving the file name.
+> - `up` means you are running the container.
 
 
+![image](https://user-images.githubusercontent.com/97989643/233099836-3f3bea54-a49c-48e3-a89f-f5cc47db756d.png)
+
+![image](https://user-images.githubusercontent.com/97989643/233104208-85cee452-56dc-4b9f-80d2-2023ad7045a9.png)
+
+![image](https://user-images.githubusercontent.com/97989643/233104637-267f0fc7-c675-4eeb-a19a-ec6a06be4000.png)
+
+![image](https://user-images.githubusercontent.com/97989643/233105378-12118b0c-c4bb-4479-9988-b67748209dee.png)
+
+Now you can see the response in the terminal.
+
+![image](https://user-images.githubusercontent.com/97989643/233106828-aa0fc74e-3ce2-4d35-ae7b-6ffbf8dd6150.png)
+
+- Now stop the container from docker desktop.
+- And again run the container from the terminal.
+```bash
+docker-compose -f docker-compose.yml up
+```
+You might see `Subham` database again when you visit the localhost:8081.
+![image](https://user-images.githubusercontent.com/97989643/233117646-eee65c16-1902-4228-8911-a0fa27aac277.png)
+> One of the biggest problems in the Docker world is that data doesn’t persist. This means that the container is a removable or detachable item and anything mentioned in the docker-compose file will be removed when you remove the container. This can actually be a good thing when you are making a sensitive application, especially something like a code engine. There is a chance that someone might throw up malicious code that could corrupt your entire system. But with a Docker container, you don’t have to worry too much because everything just goes away after that. However, in this case, we want to keep this data and understand what is keeping it. For this, we need to understand Docker volumes. Docker Desktop sometimes, in fact most of the time, creates automatic volumes for you, especially for databases. It assumes that you might want to keep this database there. This is where something interesting comes into the picture.
