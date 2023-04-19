@@ -1,3 +1,24 @@
+## **Docker Chapters**
+
+- [**Why should I use Docker 🐳 ?**](#why-should-i-use-docker--)
+- [**Then what is Docker? 🐳**](#then-what-is-docker-)
+  - [**So we use docker for :**](#so-we-use-docker-for--)
+- [**How does Docker work? 🔧**](#how-does-docker-work-)
+  - [**Example of Docker in action 💻**](#example-of-docker-in-action-)
+- [**What is difference between Docker and Virtual Machine(VM)? 🤔**](#what-is-difference-between-docker-and-virtual-machinevm-)
+    - [**❗ What is VM?**](#-what-is-vm)
+    - [**❗ What is Docker?**](#-what-is-docker)
+    - [**❗ How do they differ?**](#-how-do-they-differ)
+  - [**How to install Docker 🐳**](#how-to-install-docker-)
+- [**Containers , Images and Volumes 📦**](#containers--images-and-volumes-)
+- [**Let's start with Docker 🔥**](#lets-start-with-docker-)
+  - [**✅ Let's play with Postgresql 🐘**](#-lets-play-with-postgresql-)
+      -  [`⚡ Pulling an image`](#-pulling-an-image)
+      -  [`⚡ Check the images`](#-check-the-images)
+      -  [`⚡ Run a container`](#-run-a-container)
+
+
+
 # Why should I use Docker 🐳 ?
 
 Have you ever faced this problem? 😱
@@ -615,3 +636,5 @@ You can create as many volumes as you want. If you want to know more about data 
 ```bash
 docker-compose -f docker-compose.yml down
 ```
+
+> AWS also provides you like docker hub. You can store your docker images in AWS ECR (Elastic Container Registry). You can check out this [link](https://docs.aws.amazon.com/AmazonECR/latest/userguide/ECR_on_ECS.html) to know more about AWS ECR.
