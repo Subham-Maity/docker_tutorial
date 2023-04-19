@@ -43,7 +43,7 @@
 
 Have you ever faced this problem? 😱
 
-> Your code works fine on your dev environment, but when you publish it on the server, it breaks and gives you errors. You don't know why and you have to fix it quickly. You find out that you forgot to install a dependency or you used a different version of a tool.
+> Your code works fine on your dev environment, but when you publish it on the server, it breaks and gives you errors. You don't know whyca and you have to fix it quickly. You find out that you forgot to install a dependency or you used a different version of a tool.
 
 If yes, then you need Docker! 🙌
 
@@ -658,3 +658,54 @@ docker-compose -f docker-compose.yml down
 ```
 
 > AWS also provides you like docker hub. You can store your docker images in AWS ECR (Elastic Container Registry). You can check out this [link](https://docs.aws.amazon.com/AmazonECR/latest/userguide/ECR_on_ECS.html) to know more about AWS ECR.
+
+## Our First Project with Docker 🚀
+> Now we are going to create our first project. 
+- Step 1: Create a folder name `first project` and inside that create a file name `index.py` and `requirements.txt`
+- Step 2: Now create a file name `Dockerfile` and paste the following code in it.
+#### ⚡ Python Flask App
+```yml
+FROM python:3-alpine3.15
+WORKDIR /app
+COPY . /app
+RUN pip install -r requirements.txt
+EXPOSE 5000
+CMD python ./index.py
+```
+> - `FROM python:3-alpine3.15`: Specifies the base image to use for the build. In this case, it's `python:3-alpine3.15`, which is a lightweight Python 3 image based on Alpine Linux.
+> - `WORKDIR /app`: Sets the working directory for the build to `/app`. All subsequent commands will be run from this directory.
+> - `COPY . /app`: Copies the contents of the current directory (i.e., the directory containing the Dockerfile) into the `/app` directory in the image.
+> - `RUN pip install -r requirements.txt`: Runs the command `pip install -r requirements.txt` to install the dependencies specified in `requirements.txt`.
+> - `EXPOSE 5000`: Informs Docker that the container will listen on port 5000 at runtime.
+> - `CMD python ./index.py`: Sets the default command to run when the container starts to `python ./index.py`.
+- Step 3: Open the `index.py` file and paste the following code in it.
+```python
+from flask import Flask
+helloworld = Flask(__name__)
+
+@helloworld.route("/")
+def run():
+    return "{ \"message\": \"Hey there I am Subham\" }"
+
+if __name__ == "__main__":
+    helloworld.run(host="0.0.0.0", port=int("5000"), debug=True)
+```
+> - This is a simple flask app. It will return a json object when you visit the localhost:5000. 
+> - Don't worry if you don't understand the code. If you really want to learn flask , then you can think of it as of now assume that it is a simple flask app that returns a json object or hello world type of thing.
+- Step 4: Open the `requirements.txt` file and paste the following code in it.
+```bash
+Flask==2.2.3
+```
+- Step 5: Now open the terminal and go to the `first project` folder and run the following command.
+```bash
+docker build -t subham4041/first-flask-app:0.0.1.RELEASE .
+```
+> - `docker build -t`: This command is used to build the docker image.
+> - `subham4041/first-flask-app`: This is the name of the docker image. here `subham4041` is my docker hub username and `first-flask-app` is the name of the docker image.
+> - `0.0.1.RELEASE`: This is the version of the docker image you can change it to whatever you want.
+> - `.`: This is the path of the dockerfile. In this case, it is the current directory.
+
+> You can see the docker image in the docker desktop.
+
+![image](https://user-images.githubusercontent.com/97989643/233201950-37c583da-1863-48e1-b1f0-040d38d066b6.png)
+
