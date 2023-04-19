@@ -16,7 +16,27 @@
       -  [`⚡ Pulling an image`](#-pulling-an-image)
       -  [`⚡ Check the images`](#-check-the-images)
       -  [`⚡ Run a container`](#-run-a-container)
-
+      -  [`⚡ check the containers`](#-check-the-containers)
+      -  [`⚡ Stop and start a container`](#-stop-and-start-a-container)
+      -  [`⚡ Pull according to the version`](#-pull-according-to-the-version) 
+      -  [`⚡ Stop the container`](#-stop-the-container)
+      -  [`⚡ Removing all containers`](#-removing-all-containers) 
+      
+  - [**✅ Let's play with the mongo 🐲**](#-lets-play-with-the-mongo-)   
+      -  [`⚡ Port Mapping`](#-port-mapping) 
+      -  [`⚡ Docker Logs`](#-docker-logs)
+      -  [`⚡ Delete the container`](#-delete-the-container)
+  - [**✅ Let's Connect the mongo express with the mongo ??**](#-lets-connect-the-mongo-express-with-the-mongo-)
+      -  [`⚡ Syntax Understanding`](#-syntax-understanding)
+      -  [`⚡ Better Syntax`](#-better-syntax) 
+      -  [`⚡ Lost network finding`](#-lost-network-finding)
+- [**Let's Understand the Docker Compose 🐳**](#lets-understand-the-docker-compose-)
+    - [**Step 1**](#step-1)
+    - [**Step 2**](#step-2)
+      -  [`⚡ Running the docker-compose file`](#-running-the-docker-compose-file)
+    - [**Step 3 (Data Persistence)**](#step-3-data-persistence)
+      -  [`⚡ Creating a volume in docker-compose file`](#-creating-a-volume-in-docker-compose-file)
+      -  [`⚡ Stop running all containers`](#-stop-running-all-containers) 
 
 
 # Why should I use Docker 🐳 ?
