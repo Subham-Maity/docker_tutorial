@@ -1,5 +1,5 @@
 ## **Docker Chapters**
-
+> Small Tips: Starting with `⚡` means that it is a command that you can run in your terminal. 
 - [**Why should I use Docker 🐳 ?**](#why-should-i-use-docker--)
 - [**Then what is Docker? 🐳**](#then-what-is-docker-)
   - [**So we use docker for :**](#so-we-use-docker-for--)
@@ -37,6 +37,13 @@
     - [**Step 3 (Data Persistence)**](#step-3-data-persistence)
       -  [`⚡ Creating a volume in docker-compose file`](#-creating-a-volume-in-docker-compose-file)
       -  [`⚡ Stop running all containers`](#-stop-running-all-containers) 
+- [**Our First Project with Docker 🚀**](#our-first-project-with-docker-)
+     -  [`⚡ Python Flask App`](#-python-flask-app)
+     -  [`⚡ Build the docker image`](#-build-the-docker-image)
+     -  [`⚡ Run the docker image`](#-run-the-docker-image)
+     -  [`⚡ Stop the docker container`](#-stop-the-docker-container) 
+     -  [`⚡ Mapping the port`](#-mapping-the-port)
+     -  [`⚡ Push the docker image to the docker hub`](#-push-the-docker-image-to-the-docker-hub)
 
 
 # Why should I use Docker 🐳 ?
