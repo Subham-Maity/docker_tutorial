@@ -11,6 +11,7 @@
     - [**❗ How do they differ?**](#-how-do-they-differ)
   - [**How to install Docker 🐳**](#how-to-install-docker-)
 - [**Containers , Images and Volumes 📦**](#containers--images-and-volumes-)
+  -  [`⚡ Docker Version`](#-docker-version)
 - [**Let's start with Docker 🔥**](#lets-start-with-docker-)
   - [**✅ Let's play with Postgresql 🐘**](#-lets-play-with-postgresql-)
       -  [`⚡ Pulling an image`](#-pulling-an-image)
@@ -50,7 +51,7 @@
 
 Have you ever faced this problem? 😱
 
-> Your code works fine on your dev environment, but when you publish it on the server, it breaks and gives you errors. You don't know whyca and you have to fix it quickly. You find out that you forgot to install a dependency or you used a different version of a tool.
+> Your code works fine on your dev environment, but when you publish it on the server, it breaks and gives you errors. You don't know why ,and you have to fix it quickly. You find out that you forgot to install a dependency or you used a different version of a tool.
 
 If yes, then you need Docker! 🙌
 
@@ -135,6 +136,19 @@ Here is a table that summarizes some of the key differences between docker and v
 
 > For instance, you can create a Docker image for the Node.js application by specifying the base image as node and then copying the application code into the container. You can then build and tag the image with a specific name, like my-node-app.
 - **Volumes** are like external drives that you can connect to your containers. They let you save data that your containers make or use, such as databases, logs, or configuration files. Volumes do not get deleted when you delete a container. You can also share volumes among many containers or access them from the computer. Volumes are the best way to save data with Docker because they are easier to back up, move, and manage than other ways of saving data.
+#### ⚡ Docker Version
+To check if docker is installed or not, you can run this command in your terminal:
+```bash
+docker --version
+```
+or 
+```bash
+docker version
+```
+or
+```bash
+docker -v
+```
 
 
 ## **Let's start with Docker** 🔥
@@ -778,3 +792,6 @@ docker push subham4041/first-flask-app:0.0.1.RELEASE
 
 
 ## Our Second Project with Docker 🚀
+Our second project is a simple nodejs app that returns a json object.
+
+> Install nodejs in your system you can download it from [here](https://nodejs.org/en/download/).
