@@ -795,3 +795,62 @@ docker push subham4041/first-flask-app:0.0.1.RELEASE
 Our second project is a simple nodejs app that returns a json object.
 
 > Install nodejs in your system you can download it from [here](https://nodejs.org/en/download/).
+
+If you don't have any idea about nodejs don't worry this is a simple demo app so there is no need to understand the code in detail. We will completely focus on how docker works. If you know nodejs then you can easily understand the code also.
+
+- Step 1: Create a new folder and name it `second project`.
+- Step 2: Open the terminal and go to the `second project` folder and run the following command.
+```bash
+npm init -y
+```
+> Basically, this command will create a `package.json` file where all the dependencies will be stored.
+
+- Step 3: Now just replace the `script` inside the `package.json` file with the following code.
+```json
+"scripts": {
+    "start": "node index.js"
+  },
+```
+![image](https://user-images.githubusercontent.com/97989643/233415747-164334e1-675e-4ef2-a9d5-e0095359323e.png)
+
+Let me explain what does it mean.
+> - `scripts`: This is the key in the `package.json` file.
+> - `start`: This is the name of the script.
+> - `node index.js`: This is the command that will run when we run the `npm start` command.
+> - So basically, when we run the `npm start` command it will run the `node index.js` command.
+> - node is a javascript runtime environment. It is used to run javascript code outside the browser.
+> - `index.js`: This is the name of the file where we will write our code and using the node environment we will run the code.
+
+- Step 4: Now just install the express module using the following command.
+```bash
+npm install express
+```
+> - `npm install express`: This command is used to install the express module.
+> - `npm` is a package manager for the javascript runtime environment node.
+> - `express`: This is a nodejs framework. It is used to create a web application.
+> - You can see the `node_modules` folder in the `second project` folder.
+
+- Step 5: Now create a new file and name it `index.js` and paste the following code in it.
+```js
+const express = require('express');
+const app = express();
+const port = 5000;
+
+app.get('/', (req, res) => {
+  res.json({ message: 'Hello World!' });
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
+});
+
+```
+> No need to worry about the code. This is similar to the flask app we created in the first project. We are just returning a json object.
+> - `const express = require('express');`: This is used to import the express module.
+> - `const app = express();`: This is used to create an express app.
+> - `const port = 5000;`: This is the port number of the app.
+> - `app.get('/', (req, res) => {`: This is the route of the app. Whenever we visit the `localhost:5000` it will return the json object.
+> - `res.json({ message: 'Hello World!' });`: This is used to return the json object similar to the flask app.
+> - `app.listen(port, () => {`: This is used to start the app.
+> - `console.log(`Example app listening at http://localhost:${port}`);`: This is used to print the message in the terminal.
+
