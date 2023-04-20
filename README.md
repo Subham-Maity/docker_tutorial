@@ -697,6 +697,7 @@ if __name__ == "__main__":
 Flask==2.2.3
 ```
 - Step 5: Now open the terminal and go to the `first project` folder and run the following command.
+#### ⚡ Build the docker image
 ```bash
 docker build -t subham4041/first-flask-app:0.0.1.RELEASE .
 ```
@@ -709,3 +710,64 @@ docker build -t subham4041/first-flask-app:0.0.1.RELEASE .
 
 ![image](https://user-images.githubusercontent.com/97989643/233201950-37c583da-1863-48e1-b1f0-040d38d066b6.png)
 
+#### ⚡ Run the docker image
+
+- Step 6: Now run the following command to check if the docker image is working or not.
+```bash
+docker run -d -p 5000:5000 subham4041/first-flask-app:0.0.1.RELEASE
+```
+> You will see the something like this `9ff963bcb47695be360e0974224604dcd46782b8606.........`
+> you can check using `docker ps` command.
+
+- Step 7: Now visit the `localhost:5000` and you will see the following output.
+```json
+{
+  "message": "Hey there I am Subham"
+}
+```
+
+![image](https://user-images.githubusercontent.com/97989643/233333329-f29c7b48-7604-428c-8247-392fb7772dbf.png)
+
+#### ⚡ Stop the docker container
+
+- Step 8: Now stop the docker container using the following command.
+```bash
+docker container stop 684dfe64fad50af65280f603f5...........
+```
+or 
+```bash
+docker container stop 9ff
+```
+> - No need to write the full container id. You can write the first 3-4 characters of the container id.
+> - `docker container stop`: This command is used to stop the docker container and you can see the container id in the terminal.
+
+#### ⚡ Mapping the port
+- Step 9: While it is not possible to change the main port of a Docker container, you can map a port on your local machine to the container’s port.
+```bash
+docker run -d -p 8000:5000 subham4041/first-flask-app:0.0.1.RELEASE
+```
+> - `docker run -d -p 8000:5000`: This command is used to map the port 8000 of the local machine to the port 5000 of the docker container.
+> - `subham4041/first-flask-app:0.0.1.RELEASE`: This is the name of the docker image.
+> - Now visit the `localhost:8000` and you will see the following output.
+```json
+{
+  "message": "Hey there I am Subham"
+}
+```
+- Step 10: Now stop the docker container using the following command.
+```bash
+docker container stop 684
+```
+> - No need to write the full container id. You can write the first 3-4 characters of the container id.
+
+- Step 11: Let's push the docker image to the docker hub.
+
+#### ⚡ Push the docker image to the docker hub
+```bash
+docker push subham4041/first-flask-app:0.0.1.RELEASE
+```
+![image](https://user-images.githubusercontent.com/97989643/233347173-97fa283e-bb92-4b6f-a4a4-0a13ef4c47e0.png)
+
+
+
+## Our Second Project with Docker 🚀
