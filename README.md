@@ -1,5 +1,6 @@
-## **Docker Chapters**
+# **✨ Docker Tutorial Chapters**
 > Small Tips: Starting with `⚡` means that it is a command that you can run in your terminal. 
+- [**💖 Introduction**](#-introduction)
 - [**Why should I use Docker 🐳 ?**](#why-should-i-use-docker--)
 - [**Then what is Docker? 🐳**](#then-what-is-docker-)
   - [**So we use docker for :**](#so-we-use-docker-for--)
@@ -39,14 +40,42 @@
       -  [`⚡ Creating a volume in docker-compose file`](#-creating-a-volume-in-docker-compose-file)
       -  [`⚡ Stop running all containers`](#-stop-running-all-containers) 
 - [**Our First Project with Docker 🚀**](#our-first-project-with-docker-)
-     -  [`⚡ Python Flask App`](#-python-flask-app)
-     -  [`⚡ Build the docker image`](#-build-the-docker-image)
-     -  [`⚡ Run the docker image`](#-run-the-docker-image)
-     -  [`⚡ Stop the docker container`](#-stop-the-docker-container) 
-     -  [`⚡ Mapping the port`](#-mapping-the-port)
-     -  [`⚡ Push the docker image to the docker hub`](#-push-the-docker-image-to-the-docker-hub)
+   -  [`⚡ Python Flask App`](#-python-flask-app)
+   -  [`⚡ Build the docker image`](#-build-the-docker-image)
+   -  [`⚡ Run the docker image`](#-run-the-docker-image)
+   -  [`⚡ Stop the docker container`](#-stop-the-docker-container) 
+   -  [`⚡ Mapping the port`](#-mapping-the-port)
+   -  [`⚡ Push the docker image to the docker hub`](#-push-the-docker-image-to-the-docker-hub)
+- [**Our Second Project with Docker 🚀**](#our-second-project-with-docker-)
+  - [`⚡ NodeJs Setup`](#-nodejs-setup)
+  - [`⚡ Login to the docker hub`](#-login-to-the-docker-hub)
+  - [`⚡ Check the container id`](#-check-the-container-id)
+  - [`⚡ Stop the container`](#-stop-the-container)
+  - [`⚡ Kill the container`](#-kill-the-container)
+  - [`⚡ Remove the container`](#-remove-the-container)
+  - [`⚡ Remove the image`](#-remove-the-image)
+  - [`⚡ Pull the docker image`](#-pull-the-docker-image)
+- [**🥰 What did we understand from these two projects?**](#-what-did-we-understand-from-these-two-projects)
+- [**✨ Docker Best CLI Cheat Sheet**](#-docker-cli-cheat-sheet)
+- [**📌 Conclusion**](#-conclusion)
 
+### 📑 Another Platform For Better Reading Experience 
+![Docker Tutorial](https://img.shields.io/badge/Docker-Tutorial-blue.svg)
+- [**CodeXam**](https://codexam.vercel.app/docs/docker) - Best ✨
+- [**GitHub**](https://github.com/Subham-Maity/docker_tutorial) - Good ✨
 
+___________
+# 💖 Introduction
+
+This tutorial is designed for complete beginners to advanced users who want to learn Docker from scratch. It covers everything you need to know about Docker, from installation and configuration to creating and running containers, `images`, and `volumes`. It also explains the concepts and benefits of Docker, such as `port mapping`, `networking`, `security`, and `compose`. By the end of this tutorial, you will have no doubts about how to use Docker effectively and efficiently.
+
+This tutorial is also full of practical examples and projects that will help you apply what you learn and gain hands-on experience with Docker. You will learn how to create a Python Flask app, a Node.js app, a Postgresql database, and a Mongo Express web interface using Docker. You will also learn how to build, run, stop, delete, and push your Docker images and containers.
+
+I have created this tutorial with the aim of helping you learn Docker in a fun and easy way. If you appreciate his effort and find this tutorial useful, please give it a star (⭐) on GitHub and share it with your friends.
+
+So what are you waiting for? Let's dive into the world of Docker and see what it can do for you!
+
+____________
 # Why should I use Docker 🐳 ?
 
 Have you ever faced this problem? 😱
@@ -793,7 +822,7 @@ docker push subham4041/first-flask-app:0.0.1.RELEASE
 
 ## Our Second Project with Docker 🚀
 Our second project is a simple nodejs app that returns a json object.
-
+#### ⚡ Nodejs Setup
 > Install nodejs in your system you can download it from [here](https://nodejs.org/en/download/).
 
 If you don't have any idea about nodejs don't worry this is a simple demo app so there is no need to understand the code in detail. We will completely focus on how docker works. If you know nodejs then you can easily understand the code also.
@@ -1090,3 +1119,10 @@ If someone pulls the docker image from the docker hub, then they don't need to i
 | Showing the history of an image | This command shows the history of an image, including the layers and commands that were used to create it. You can use this to inspect how an image was built or to optimize it. | `docker history [options] image` |
 
 
+## 📌 Conclusion
+
+Congratulations! You have completed this tutorial on Docker and learned how to use it for various purposes. You have also created some amazing projects using Docker that showcase your skills and creativity. You should be proud of yourself!
+
+Now you can experiment with whatever you want with Docker and explore its endless possibilities. You can also improve this tutorial with a pull request or add more content if you have any suggestions or ideas. Your feedback is always welcome and appreciated.
+
+Thank you for reading this tutorial and following along. I hope you enjoyed it and learned something new. Happy Docking! 😊
