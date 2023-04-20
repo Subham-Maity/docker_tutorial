@@ -854,3 +854,239 @@ app.listen(port, () => {
 > - `app.listen(port, () => {`: This is used to start the app.
 > - `console.log(`Example app listening at http://localhost:${port}`);`: This is used to print the message in the terminal.
 
+- Step 6: Now run the following command to start the app.
+```bash
+npm start
+```
+hit this in the terminal and you will see the following output.
+```bash
+Example app listening at http://localhost:5000
+```
+Now visit the `localhost:5000` and you will see the following output.
+```json
+{
+  "message": "Hello World!"
+}
+```
+![image](https://user-images.githubusercontent.com/97989643/233419825-0a7c8dcb-75d9-42aa-9536-41148b23c591.png)
+
+#### ⚡ Login to the docker hub
+First, you need to login to the docker hub using the following command.
+```bash
+docker login
+```
+You will see the following output.
+```bash
+Logging in with your password grants your terminal complete access to your account.
+```
+- Step 7: Now stop the app using the `ctrl+c` command then delete the `node_modules` folder and create a new file and name it `Dockerfile` and paste the following code in it.
+```dockerfile
+FROM node:14.17.0-alpine3.13
+WORKDIR /app
+COPY . /app
+RUN npm install
+EXPOSE 5000
+CMD node index.js
+```
+
+- Step 8: Now run the following command to build the docker image.
+```bash
+docker build -t subham4041/second-node-app:0.0.1.RELEASE .
+```
+> - `docker build -t subham4041/second-node-app:0.0.1.RELEASE .`: This command is used to build the docker image.
+> - `docker build`: This is the command to build the docker image.
+> - `-t subham4041/second-node-app:0.0.1.RELEASE`: This is the name of the docker image.
+>   - `subham4041`: This is the docker hub username. You will get this when you log in to the docker hub. 
+>   - `second-node-app`: This is the name of the docker image.
+>   - `0.0.1.RELEASE`: This is the version of the docker image.
+> - `.`: This is the path of the dockerfile. In our case, it is the current directory.
+
+now you will see something like this.
+![image](https://user-images.githubusercontent.com/97989643/233451193-e20a6b06-e37c-418a-a553-7cf82f8451e5.png)
+
+- Step 9: Now check how many docker images running in your system using the following command.
+```bash
+docker ls
+```
+You will see the following output.
+```bash
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+```
+> - `CONTAINER ID`: This is the id of the container.
+> - `IMAGE`: This is the name of the docker image.
+> - `COMMAND`: This is the command that is running inside the container.
+> - `CREATED`: This is the time when the container was created.
+> - `STATUS`: This is the status of the container.
+> - `PORTS`: This is the port number of the container.
+> - `NAMES`: This is the name of the container.
+> - You can see that there is no docker image running in your system.
+- Step 10: Now run the following command to run the docker image.
+```bash
+docker run -d -p 5001:5000 subham4041/second-node-app:0.0.1.RELEASE
+```
+
+> - `docker run -d -p 5001:5000 subham4041/second-node-app:0.0.1.RELEASE`: This command is used to run the docker image.
+> - `docker run`: This is the command to run the docker image.
+> - `-d`: This is used to run the docker image in the background.
+> - `-p 5001:5000`: This is used to map the port number of the docker image to the port number of the host machine.
+> - `subham4041/second-node-app:0.0.1.RELEASE`: This is the name of the docker image.
+> - You can see that the docker image is running in the background.
+
+- Step 11: Now check how many docker images running in your system using the following command.
+```bash
+docker ps
+```
+You will see the following output.
+```bash
+CONTAINER ID   IMAGE                                     COMMAND                  CREATED          STATUS          PORTS                    NAMES
+b3b0b5b5b9b0   subham4041/second-node-app:0.0.1.RELEASE   "docker-entrypoint.s…"   10 seconds ago   Up 9 seconds
+```
+
+- Step 12: Now visit the `localhost:5001` and you will see the following output.
+```json
+{
+  "message": "Hello World!"
+}
+```
+- Step 13: Now run the following command to push the docker image to the docker hub.
+```bash
+docker push subham4041/second-node-app:0.0.1.RELEASE
+```
+![image](https://user-images.githubusercontent.com/97989643/233453706-e185ecb4-b886-4216-b551-64bc51062eda.png)
+
+- Step 14: Now let's delete the docker image from the local system using the following command.
+
+> You can do this using the docker desktop app also.
+
+#### ⚡ Check the container id
+First, you need to check the image id using the following command.
+```bash
+docker ps
+```
+#### ⚡ Stop the container
+Now run the following command to stop the container.
+```bash
+docker stop <container_id>
+```
+> In my case, the container id is `b3b0b5b5b9b0` so I will run the following command `docker stop b3b0b5b5b9b0`.
+
+#### ⚡ Kill the container
+Now run the following command to kill the container.
+```bash
+docker kill <container_id>
+```
+> This will send a signal to the container to gracefully stop. If you want to forcefully stop the container immediately, you can use the docker kill command instead:`docker stop <container_id>`
+
+#### ⚡ Remove the container
+You can remove the container using the `docker rm` command followed by the container ID. For example, to remove the container with ID `b9061e6d08b6`, you can use the following command:
+```bash
+docker rm b9061e6d08b6
+```
+#### ⚡ Remove the image
+After removing the container, you can then delete the image using the `docker rmi` command: 
+```bash
+docker rmi <image_id>
+```
+> In my case, the image id is `a0dacd3ecd79e1252ca8e8a655902af1b6ae98ee609cdee91056c67a6ca00a5c` so I will run the following command `docker rmi a0dacd3ecd79e1252ca8e8a655902af1b6ae98ee609cdee91056c67a6ca00a5c`.
+> This will delete the image from your system.
+
+- Step 15: Now run the following command to pull the docker image from the docker hub.
+#### ⚡ Pull the docker image
+
+```bash
+docker pull subham4041/second-node-app:0.0.1.RELEASE
+```
+- Step 16: Now run the following command to run the docker image.
+```bash
+docker run -d -p 5001:5000 subham4041/second-node-app:0.0.1.RELEASE
+```
+Now visit the `localhost:5001` and you will see the following output.
+```json
+{
+  "message": "Hello World!"
+}
+```
+
+## 🥰 What did we understand from these two projects?
+
+If someone pulls the docker image from the docker hub, then they don't need to install the nodejs and npm in their system. They just need to install the docker in their system and then they can run the docker image and they can easily access the application without installing the nodejs and npm in their system. This is the **magic of docker.**
+
+## ✨ Docker CLI Cheat Sheet
+
+### 1. Installation
+
+| Command | Meaning | Syntax |
+| --- | --- | --- |
+| For Windows | This command helps you to install Docker on Windows. | `https://download.docker.com/win/stable/InstallDocker.msi` |
+| For Linux | This command helps you to install Docker on Linux. | `curl -sSL https://get.docker.com/ | sh` |
+| For Mac | This command helps you to install Docker on Mac OS. | `https://download.docker.com/mac/stable/Docker.dmg` |
+
+### 2. Docker Registry and Repository
+
+| Command | Meaning | Syntax |
+| --- | --- | --- |
+| Login to a Registry | This command helps you log in to your Registry. | `docker login [options] [server]` |
+| Logout from a registry | This command helps you log out from your Registry. | `docker logout [server]` |
+| Searching an image | By using this docker command you can search any image from your docker. | `docker search [options] term` |
+| Pulling an image | This command can be used to download a specific image or set of images. | `docker pull [options] name[:tag]` |
+| Pushing an image | This command can be used to push a specific image or set of images. | `docker push [options] name[:tag]` |
+
+### 3. Running Containers
+
+| Command | Meaning | Syntax |
+| --- | --- | --- |
+| Running a container from an image | This command creates and starts a container from an image. You can specify various options such as ports, volumes, environment variables, etc. | `docker run [options] image[:tag] [command] [args]` |
+| Listing running containers | This command shows all the containers that are currently running. You can use filters and format options to customize the output. | `docker ps [options]` |
+| Listing all containers (running and stopped) | This command shows all the containers that exist on your system, regardless of their status. You can use filters and format options to customize the output. | `docker ps -a [options]` |
+| Stopping a container | This command stops a running container by sending a SIGTERM signal and then a SIGKILL signal if the container does not stop within a grace period. You can specify multiple containers to stop at once. | `docker stop [options] container [container...]` |
+| Starting a stopped container | This command starts a stopped container by restoring its state. You can specify multiple containers to start at once. | `docker start [options] container [container...]` |
+| Restarting a container | This command restarts a running or stopped container by stopping and then starting it again. You can specify multiple containers to restart at once. | `docker restart [options] container [container...]` |
+| Removing a container | This command removes one or more containers from your system. You can use filters and force options to remove containers that are running or have volumes attached to them. | `docker rm [options] container [container...]` |
+
+
+### 4. Managing Images
+
+| Command | Meaning | Syntax |
+| --- | --- | --- |
+| Building an image from a Dockerfile | This command builds an image from a Dockerfile and optionally tags it with a name and tag. You can specify various options such as build arguments, cache settings, etc. | `docker build [options] path` |
+| Removing an image from your system | This command removes one or more images from your system. You can use filters and force options to remove images that are in use or have dependent images. | `docker rmi [options] image [image...]` |
+| Tagging an image with a name and tag | This command assigns a name and tag to an image. You can use this to create aliases for images or to prepare them for pushing to a registry. | `docker tag [options] image[:tag] name[:tag]` |
+| Saving an image to a tar archive | This command saves one or more images to a tar archive file. You can use this to backup or transfer images between systems. | `docker save [options] image [image...] -o file` |
+| Loading an image from a tar archive | This command loads one or more images from a tar archive file. You can use this to restore or import images from a backup or another system. | `docker load [options] -i file` |
+
+### 5. Managing Volumes
+
+| Command | Meaning | Syntax |
+| --- | --- | --- |
+| Creating a volume | This command creates a volume on your system. You can specify various options such as name, driver, labels, etc. | `docker volume create [options] [name]` |
+| Listing volumes on your system | This command shows all the volumes that are stored on your system. You can use filters and format options to customize the output. | `docker volume ls [options]` |
+| Inspecting a volume | This command shows detailed information about a specific volume. You can use this to check the status, driver, mount point, etc. of a volume. | `docker volume inspect [options] volume [volume...]` |
+| Removing a volume from your system | This command removes one or more volumes from your system. You can use filters and force options to remove volumes that are in use or have dependent containers. | `docker volume rm [options] volume [volume...]` |
+| Pruning unused volumes from your system | This command removes all the volumes that are not referenced by any containers from your system. You can use filters to exclude some volumes from pruning. | `docker volume prune [options]` |
+
+### 6. Managing Networks
+
+| Command | Meaning | Syntax |
+| --- | --- | --- |
+| Creating a network | This command creates a network on your system. You can specify various options such as name, driver, subnet, etc. | `docker network create [options] [name]` |
+| Listing networks on your system | This command shows all the networks that are available on your system. You can use filters and format options to customize the output. | `docker network ls [options]` |
+| Inspecting a network | This command shows detailed information about a specific network. You can use this to check the status, driver, IP range, connected containers, etc. of a network. | `docker network inspect [options] network [network...]` |
+| Removing a network from your system | This command removes one or more networks from your system. You can use filters and force options to remove networks that are in use or have dependent containers. | `docker network rm [options] network [network...]` |
+| Pruning unused networks from your system | This command removes all the networks that are not used by any containers from your system. You can use filters to exclude some networks from pruning. | `docker network prune [options]` |
+
+### 7. Miscellaneous Commands (continued)
+
+| Command | Meaning | Syntax |
+| --- | --- | --- |
+| Getting help on docker commands and options | This command shows the usage and options for any docker command or subcommand. You can use this to learn more about how to use docker. | `docker [command] --help` |
+| Getting the version of docker | This command shows the version and build information of docker on your system. You can use this to check if you have the latest version or if you need to update. | `docker version [options]` |
+| Getting system-wide information on docker | This command shows system-wide information about docker on your system. You can use this to check the status, resources, configuration, etc. of docker. | `docker info [options]` |
+| Executing a command in a running container | This command executes a command in a running container and returns the output. You can use this to run commands that are not available in the container's shell or to interact with the container's processes. | `docker exec [options] container command [args]` |
+| Attaching to a running container | This command attaches your terminal to a running container's standard input, output, and error streams. You can use this to interact with the container's shell or processes. | `docker attach [options] container` |
+| Copying files or folders between a container and your system | This command copies files or folders between a container and your system. You can use this to transfer data to or from a container. | `docker cp [options] source destination` |
+| Viewing logs from a container | This command shows the logs from a container's standard output and error streams. You can use this to monitor or troubleshoot a container's activity. | `docker logs [options] container` |
+| Committing changes to an image | This command creates a new image from a container's changes. You can use this to save your modifications or to create new images based on existing ones. | `docker commit [options] container [repository[:tag]]` |
+| Building an image from stdin or a URL | This command builds an image from a Dockerfile that is provided through stdin or a URL. You can use this to build images from remote sources or scripts. | `docker build [options] - < Dockerfile` or `docker build [options] url` |
+| Showing the history of an image | This command shows the history of an image, including the layers and commands that were used to create it. You can use this to inspect how an image was built or to optimize it. | `docker history [options] image` |
+
+
